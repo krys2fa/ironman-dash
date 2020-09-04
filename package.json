@@ -14,7 +14,11 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tests": "jest",
+    "lint": "npx eslint . --fix && npx stylelint '**/*.{css,scss}' --fix",
+    "dev": "webpack mode --development",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open",
   },
   "repository": {
     "type": "git",
