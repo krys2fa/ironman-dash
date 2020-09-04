@@ -24,7 +24,7 @@
   "scripts": {
     "tests": "jest",
     "lint": "npx eslint . --fix && npx stylelint '**/*.{css,scss}' --fix",
-    "dev": "webpack mode --development",
+    "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open"
   },
