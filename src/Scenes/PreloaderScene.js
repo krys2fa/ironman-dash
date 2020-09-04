@@ -3,6 +3,9 @@ import Phaser from 'phaser';
 import blueButton02 from '../assets/ui/blue_button02.png';
 import blueButton03 from '../assets/ui/blue_button03.png';
 import zuluBattleGear from '../assets/zulu-battle-gear.png';
+import greyBox from '../assets/ui/grey_box.png';
+import blueCheckmark from '../assets/ui/blue_boxCheckmark.png';
+import townTheme from '../assets/sounds/TownTheme.mp3';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -77,6 +80,9 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('blueButton1', blueButton02);
     this.load.image('blueButton2', blueButton03);
     this.load.image('phaserLogo', zuluBattleGear);
+    this.load.image('box', greyBox);
+    this.load.image('checkedBox', blueCheckmark);
+    this.load.image('bgMusic', townTheme);
   }
 
   // create() {}
