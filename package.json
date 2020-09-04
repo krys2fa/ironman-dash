@@ -13,7 +13,13 @@
     "stylelint-scss": "3.17.2",
     "webpack-dev-server": "3.11.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "css-loader": "4.2.2",
+    "file-loader": "6.1.0",
+    "style-loader": "1.2.1",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12"
+  },
   "scripts": {
     "tests": "jest",
     "lint": "npx eslint . --fix && npx stylelint '**/*.{css,scss}' --fix",
