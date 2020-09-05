@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+/* eslint-disable no-unused-expressions */
 import Phaser from 'phaser';
 import config from '../Config/config';
 
@@ -5,8 +7,6 @@ export default class CreditsScene extends Phaser.Scene {
   constructor() {
     super('Credits');
   }
-
-  preload() {}
 
   create() {
     this.creditsText = this.add.text(0, 0, 'IronMan Dash Credits', {
@@ -53,11 +53,10 @@ export default class CreditsScene extends Phaser.Scene {
       targets: this.madeByText,
       y: -300,
       ease: 'Power1',
-      duration: 3000,
+      duration: 8000,
       delay: 1000,
       onComplete: function () {
         this.madeByTween.destroy;
-        // this.scene.start('Title');
       }.bind(this),
     });
 
@@ -65,8 +64,8 @@ export default class CreditsScene extends Phaser.Scene {
       targets: this.requirementsByText,
       y: -300,
       ease: 'Power1',
-      duration: 3000,
-      delay: 2000,
+      duration: 10000,
+      delay: 1000,
       onComplete: function () {
         this.requirementsByText.destroy;
         this.scene.start('Title');
