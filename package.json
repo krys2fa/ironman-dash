@@ -1,0 +1,16 @@
+{
+  "name": "ironman-dash",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/krys2fa/ironman-dash.git",
+  "author": "Christopher \nAmanor <kriskit7@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "6",
+    "babel-loader": "^7.0.0",
+    "webpack": "^3.0.0"
+  },
+  "dependencies": {
+    "phaser": "^3.0.0"
+  }
+}
