@@ -9,6 +9,7 @@ export default class CreditsScene extends Phaser.Scene {
   }
 
   create() {
+    this.add.image(400, 300, 'sky');
     this.creditsText = this.add.text(0, 0, 'IronMan Dash Credits', {
       fontSize: '32px',
       fill: '#fff',

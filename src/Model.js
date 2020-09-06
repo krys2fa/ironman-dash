@@ -2,7 +2,7 @@
 export default class Model {
   constructor() {
     this._soundOn = true;
-    this._musicOn = true;
+    this._musicOn = false; // change back
     this._bgMusicPlaying = false;
   }
 
