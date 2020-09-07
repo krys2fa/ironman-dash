@@ -10,12 +10,13 @@ export default class BootScene extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48,
     });
+
     this.load.spritesheet('coin', 'assets/game/coin.png', {
-      frameWidth: 48,
-      frameHeight: 43,
+      frameWidth: 20,
+      frameHeight: 20,
     });
 
-    this.load.spritesheet('mountain', 'assets/game/mountain.png', {
+    this.load.spritesheet('buildings', 'assets/game/buildings-layer.png', {
       frameWidth: 512,
       frameHeight: 512,
     });

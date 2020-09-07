@@ -12,7 +12,7 @@ export default class PreloaderScene extends Phaser.Scene {
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
-    progressBox.fillRect(config.width / 2 - 160, config.height / 2 - 30, 320, 50);
+    progressBox.fillRect(config.width / 2 - 160, config.height / 2 - 30, 300, 50);
 
     const { width } = this.cameras.main;
     const { height } = this.cameras.main;

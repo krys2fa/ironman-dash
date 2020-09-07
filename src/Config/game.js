@@ -1,15 +1,11 @@
 /* eslint-disable no-unused-vars */
 let gameOptions;
 export default gameOptions = {
-  //   platformStartSpeed: 350,
-  //   spawnRange: [100, 350],
-  //   platformSizeRange: [50, 250],
-  //   playerGravity: 900,
-  //   jumpForce: 400,
-  //   playerStartPosition: 200,
-  //   jumps: 2,
   // platform speed range, in pixels per second
-  platformSpeedRange: [300, 400],
+  platformSpeedRange: [300, 300],
+
+  // buildings speed, in pixels per second
+  buildingsSpeed: 80,
 
   // spawn range, how far should be the rightmost platform from the right edge
   // before next platform spawns, in pixels
@@ -19,10 +15,10 @@ export default gameOptions = {
   platformSizeRange: [90, 300],
 
   // a height range between rightmost platform and next platform to be spawned
-  platformHeightRange: [-10, 10],
+  platformHeightRange: [-5, 5],
 
   // a scale to be multiplied by platformHeightRange
-  platformHeighScale: 10,
+  platformHeighScale: 20,
 
   // platform max and min height, as screen height ratio
   platformVerticalLimit: [0.4, 0.8],
@@ -38,4 +34,7 @@ export default gameOptions = {
 
   // consecutive jumps allowed
   jumps: 2,
+
+  // % of probability a coin appears on the platform
+  coinPercent: 25,
 };

@@ -29,25 +29,13 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('sky', 'assets/game/sky.png');
     this.load.spritesheet('ironman', 'assets/game/ironman.png', {
       frameWidth: 32,
       frameHeight: 48,
     });
-    this.load.spritesheet('coin', 'assets/game/coin.png', {
-      frameWidth: 20,
-      frameHeight: 20,
-    });
-
-    this.load.spritesheet('mountain', 'mountain.png', {
-      frameWidth: 512,
-      frameHeight: 512,
-    });
   }
 
-
   create() {
-    this.add.image('sky');
     // setting player animation
     this.anims.create({
       key: 'run',
@@ -55,11 +43,12 @@ export default class GameScene extends Phaser.Scene {
         start: 8,
         end: 11,
       }),
-      frameRate: 8,
+      frameRate: 15,
       repeat: -1,
     });
 
     // setting coin animation
+
     this.anims.create({
       key: 'rotate',
       frames: this.anims.generateFrameNumbers('coin', {
@@ -70,12 +59,11 @@ export default class GameScene extends Phaser.Scene {
       yoyo: true,
       repeat: -1,
     });
-    // group with all active mountains.
-    this.mountainGroup = this.add.group();
+    // group with all active buildings.
+    this.buildingsGroup = this.add.group();
 
     // group with all active platforms.
     this.platformGroup = this.add.group({
-
       // once a platform is removed, it's added to the pool
       removeCallback(platform) {
         platform.scene.platformPool.add(platform);
@@ -84,7 +72,6 @@ export default class GameScene extends Phaser.Scene {
 
     // platform pool
     this.platformPool = this.add.group({
-
       // once a platform is removed from the pool, it's added to the active platforms group
       removeCallback(platform) {
         platform.scene.platformGroup.add(platform);
@@ -93,7 +80,6 @@ export default class GameScene extends Phaser.Scene {
 
     // group with all active coins.
     this.coinGroup = this.add.group({
-
       // once a coin is removed, it's added to the pool
       removeCallback(coin) {
         coin.scene.coinPool.add(coin);
@@ -102,15 +88,14 @@ export default class GameScene extends Phaser.Scene {
 
     // coin pool
     this.coinPool = this.add.group({
-
       // once a coin is removed from the pool, it's added to the active coins group
       removeCallback(coin) {
         coin.scene.coinGroup.add(coin);
       },
     });
 
-    // adding a mountain
-    this.addMountains();
+    // adding a buildings
+    this.addBuildings();
 
     // keeping track of added platforms
     this.addedPlatforms = 0;
@@ -119,69 +104,93 @@ export default class GameScene extends Phaser.Scene {
     this.playerJumps = 0;
 
     // adding a platform to the game, the arguments are platform width, x position and y position
-    this.addPlatform(config.width, config.width / 2, config.height * gameOptions.platformVerticalLimit[1]);
+    this.addPlatform(
+      config.width,
+      config.width / 2,
+      config.height * gameOptions.platformVerticalLimit[1],
+    );
 
     // adding the player;
-    this.player = this.physics.add.sprite(gameOptions.playerStartPosition, config.height * 0.7, 'ironman');
+    this.player = this.physics.add.sprite(
+      gameOptions.playerStartPosition,
+      config.height * 0.7,
+      'ironman',
+    );
     this.player.setGravityY(gameOptions.playerGravity);
     this.player.setDepth(2);
 
     // setting collisions between the player and the platform group
-    this.physics.add.collider(this.player, this.platformGroup, function () {
-      // play "run" animation if the player is on a platform
-      if (!this.player.anims.isPlaying) {
-        this.player.anims.play('run');
-      }
-    }, null, this);
+    this.physics.add.collider(
+      this.player,
+      this.platformGroup,
+      function () {
+        // play "run" animation if the player is on a platform
+        if (!this.player.anims.isPlaying) {
+          this.player.anims.play('run');
+        }
+      },
+      null,
+      this,
+    );
 
     // setting collisions between the player and the coin group
-    this.physics.add.overlap(this.player, this.coinGroup, function (player, coin) {
-      this.tweens.add({
-        targets: coin,
-        y: coin.y - 100,
-        alpha: 0,
-        duration: 800,
-        ease: 'Cubic.easeOut',
-        callbackScope: this,
-        onComplete() {
-          this.coinGroup.killAndHide(coin);
-          this.coinGroup.remove(coin);
-        },
-      });
-    }, null, this);
+    this.physics.add.overlap(
+      this.player,
+      this.coinGroup,
+      function (player, coin) {
+        this.tweens.add({
+          targets: coin,
+          y: coin.y - 100,
+          alpha: 0,
+          duration: 800,
+          ease: 'Cubic.easeOut',
+          callbackScope: this,
+          onComplete() {
+            this.coinGroup.killAndHide(coin);
+            this.coinGroup.remove(coin);
+          },
+        });
+      },
+      null,
+      this,
+    );
 
     // checking for input
     this.input.on('pointerdown', this.jump, this);
   }
 
-  // adding mountains
-  addMountains() {
-    const rightmostMountain = this.getRightmostMountain();
-    if (rightmostMountain < config.width * 2) {
-      const mountain = this.physics.add.sprite(rightmostMountain + Phaser.Math.Between(100, 350), config.height + Phaser.Math.Between(0, 100), 'mountain');
-      mountain.setOrigin(0.5, 1);
-      mountain.body.setVelocityX(gameOptions.mountainSpeed * -1);
-      this.mountainGroup.add(mountain);
+  // adding buildings
+  addBuildings() {
+    const rightmostBuildings = this.getRightmostBuildings();
+    if (rightmostBuildings < config.width * 2) {
+      const buildings = this.physics.add.sprite(
+        rightmostBuildings + Phaser.Math.Between(100, 350),
+        config.height + Phaser.Math.Between(0, 100),
+        'buildings',
+      );
+      buildings.setOrigin(0.5, 1);
+      buildings.body.setVelocityX(gameOptions.buildingsSpeed * -1);
+      this.buildingsGroup.add(buildings);
       if (Phaser.Math.Between(0, 1)) {
-        mountain.setDepth(1);
+        buildings.setDepth(1);
       }
-      mountain.setFrame(Phaser.Math.Between(0, 3));
-      this.addMountains();
+      buildings.setFrame(Phaser.Math.Between(0, 3));
+      this.addBuildings();
     }
   }
 
-  // getting rightmost mountain x position
-  getRightmostMountain() {
-    let rightmostMountain = -200;
-    this.mountainGroup.getChildren().forEach((mountain) => {
-      rightmostMountain = Math.max(rightmostMountain, mountain.x);
+  // getting rightmost buildings x position
+  getRightmostBuildings() {
+    let rightmostBuildings = -200;
+    this.buildingsGroup.getChildren().forEach((buildings) => {
+      rightmostBuildings = Math.max(rightmostBuildings, buildings.x);
     });
-    return rightmostMountain;
+    return rightmostBuildings;
   }
 
   // the core of the script: platform are added from the pool or created on the fly
   addPlatform(platformWidth, posX, posY) {
-    this.addedPlatforms++;
+    this.addedPlatforms += 1;
     let platform;
     if (this.platformPool.getLength()) {
       platform = this.platformPool.getFirst();
@@ -197,11 +206,19 @@ export default class GameScene extends Phaser.Scene {
       platform = this.add.tileSprite(posX, posY, platformWidth, 32, 'platform');
       this.physics.add.existing(platform);
       platform.body.setImmovable(true);
-      platform.body.setVelocityX(Phaser.Math.Between(gameOptions.platformSpeedRange[0], gameOptions.platformSpeedRange[1]) * -1);
+      platform.body.setVelocityX(
+        Phaser.Math.Between(
+          gameOptions.platformSpeedRange[0],
+          gameOptions.platformSpeedRange[1],
+        ) * -1,
+      );
       platform.setDepth(2);
       this.platformGroup.add(platform);
     }
-    this.nextPlatformDistance = Phaser.Math.Between(gameOptions.spawnRange[0], gameOptions.spawnRange[1]);
+    this.nextPlatformDistance = Phaser.Math.Between(
+      gameOptions.spawnRange[0],
+      gameOptions.spawnRange[1],
+    );
 
     // is there a coin over the platform?
     if (this.addedPlatforms > 1) {
@@ -226,14 +243,18 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
-  // the player jumps when on the ground, or once in the air as long as there are jumps left and the first jump was on the ground
+  // the player jumps when on the ground, or once in the air as long as there
+  // are jumps left and the first jump was on the ground
   jump() {
-    if (this.player.body.touching.down || (this.playerJumps > 0 && this.playerJumps < gameOptions.jumps)) {
+    if (
+      this.player.body.touching.down
+      || (this.playerJumps > 0 && this.playerJumps < gameOptions.jumps)
+    ) {
       if (this.player.body.touching.down) {
         this.playerJumps = 0;
       }
       this.player.setVelocityY(gameOptions.jumpForce * -1);
-      this.playerJumps++;
+      this.playerJumps += 1;
 
       // stops animation
       this.player.anims.stop();
@@ -271,27 +292,42 @@ export default class GameScene extends Phaser.Scene {
     }, this);
 
     // recycling mountains
-    this.mountainGroup.getChildren().forEach(function (mountain) {
-      if (mountain.x < -mountain.displayWidth) {
-        const rightmostMountain = this.getRightmostMountain();
-        mountain.x = rightmostMountain + Phaser.Math.Between(100, 350);
-        mountain.y = config.height + Phaser.Math.Between(0, 100);
-        mountain.setFrame(Phaser.Math.Between(0, 3));
+    this.buildingsGroup.getChildren().forEach(function (buildings) {
+      if (buildings.x < -buildings.displayWidth) {
+        const rightmostBuildings = this.getRightmostBuildings();
+        buildings.x = rightmostBuildings + Phaser.Math.Between(100, 350);
+        buildings.y = config.height + Phaser.Math.Between(0, 100);
+        buildings.setFrame(Phaser.Math.Between(0, 3));
         if (Phaser.Math.Between(0, 1)) {
-          mountain.setDepth(1);
+          buildings.setDepth(1);
         }
       }
     }, this);
 
     // adding new platforms
     if (minDistance > this.nextPlatformDistance) {
-      const nextPlatformWidth = Phaser.Math.Between(gameOptions.platformSizeRange[0], gameOptions.platformSizeRange[1]);
-      const platformRandomHeight = gameOptions.platformHeighScale * Phaser.Math.Between(gameOptions.platformHeightRange[0], gameOptions.platformHeightRange[1]);
+      const nextPlatformWidth = Phaser.Math.Between(
+        gameOptions.platformSizeRange[0],
+        gameOptions.platformSizeRange[1],
+      );
+      const platformRandomHeight = gameOptions.platformHeighScale
+        * Phaser.Math.Between(
+          gameOptions.platformHeightRange[0],
+          gameOptions.platformHeightRange[1],
+        );
       const nextPlatformGap = rightmostPlatformHeight + platformRandomHeight;
       const minPlatformHeight = config.height * gameOptions.platformVerticalLimit[0];
       const maxPlatformHeight = config.height * gameOptions.platformVerticalLimit[1];
-      const nextPlatformHeight = Phaser.Math.Clamp(nextPlatformGap, minPlatformHeight, maxPlatformHeight);
-      this.addPlatform(nextPlatformWidth, config.width + nextPlatformWidth / 2, nextPlatformHeight);
+      const nextPlatformHeight = Phaser.Math.Clamp(
+        nextPlatformGap,
+        minPlatformHeight,
+        maxPlatformHeight,
+      );
+      this.addPlatform(
+        nextPlatformWidth,
+        config.width + nextPlatformWidth / 2,
+        nextPlatformHeight,
+      );
     }
   }
 }
