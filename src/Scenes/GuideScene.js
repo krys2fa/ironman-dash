@@ -5,19 +5,19 @@ import config from '../Config/config';
 
 export default class CreditsScene extends Phaser.Scene {
   constructor() {
-    super('Credits');
+    super('Guide');
   }
 
   create() {
-    this.creditsText = this.add.text(0, 0, 'IronMan Dash Credits', {
+    this.titleText = this.add.text(0, 0, 'IronMan Dash Instructions', {
       fontSize: '32px',
       fill: '#fff',
     });
-    this.madeByText = this.add.text(0, 0, 'Created By: Christopher Amanor', {
+    this.jumpText = this.add.text(0, 0, 'Click your left mouse button to jump. \n\n\n\nIronman can make an extra jump while in the air.', {
       fontSize: '26px',
       fill: '#fff',
     });
-    this.requirementsByText = this.add.text(0, 0, 'Game Requirements By: Microverse Inc.', {
+    this.tipsText = this.add.text(0, 0, 'Pick up coins and avoid the blue fires in the process.', {
       fontSize: '26px',
       fill: '#fff',
     });
@@ -28,18 +28,18 @@ export default class CreditsScene extends Phaser.Scene {
       config.height,
     );
 
-    Phaser.Display.Align.In.Center(this.creditsText, this.zone);
+    Phaser.Display.Align.In.Center(this.titleText, this.zone);
 
-    Phaser.Display.Align.In.Center(this.madeByText, this.zone);
+    Phaser.Display.Align.In.Center(this.jumpText, this.zone);
 
-    Phaser.Display.Align.In.Center(this.requirementsByText, this.zone);
+    Phaser.Display.Align.In.Center(this.tipsText, this.zone);
 
-    this.madeByText.setY(1000);
+    this.jumpText.setY(1000);
 
-    this.requirementsByText.setY(1200);
+    this.tipsText.setY(1200);
 
-    this.creditsTween = this.tweens.add({
-      targets: this.creditsText,
+    this.titleTween = this.tweens.add({
+      targets: this.titleText,
       y: -100,
       ease: 'Power1',
       duration: 3000,
@@ -49,25 +49,25 @@ export default class CreditsScene extends Phaser.Scene {
       },
     });
 
-    this.madeByTween = this.tweens.add({
-      targets: this.madeByText,
+    this.jumpTween = this.tweens.add({
+      targets: this.jumpText,
       y: -300,
       ease: 'Power1',
       duration: 8000,
       delay: 1000,
       onComplete: function () {
-        this.madeByTween.destroy;
+        this.jumpTween.destroy;
       }.bind(this),
     });
 
-    this.requirementsByText = this.tweens.add({
-      targets: this.requirementsByText,
+    this.tipsText = this.tweens.add({
+      targets: this.tipsText,
       y: -300,
       ease: 'Power1',
       duration: 10000,
       delay: 1000,
       onComplete: function () {
-        this.requirementsByText.destroy;
+        this.tipsText.destroy;
         this.scene.start('Title');
       }.bind(this),
     });

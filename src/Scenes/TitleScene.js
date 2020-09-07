@@ -31,11 +31,22 @@ export default class TitleScene extends Phaser.Scene {
       'Options',
     );
 
+    // Guide
+    this.instructionsButton = new Button(
+      this,
+      config.width / 2,
+      config.height / 2 + 100,
+      'blueButton1',
+      'blueButton2',
+      'Guide',
+      'Guide',
+    );
+
     // Credits
     this.creditsButton = new Button(
       this,
       config.width / 2,
-      config.height / 2 + 100,
+      config.height / 2 + 200,
       'blueButton1',
       'blueButton2',
       'Credits',
