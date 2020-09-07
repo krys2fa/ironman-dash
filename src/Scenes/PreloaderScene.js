@@ -1,5 +1,6 @@
 /* eslint-disable radix */
 import Phaser from 'phaser';
+import config from '../Config/config';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -7,12 +8,11 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   preload() {
-    this.add.image(400, 300, 'sky');
-    this.add.image(400, 200, 'logo');
+    this.add.image(config.width / 2, config.height / 2 - 150, 'logo');
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
-    progressBox.fillRect(240, 270, 320, 50);
+    progressBox.fillRect(config.width / 2 - 160, config.height / 2 - 30, 320, 50);
 
     const { width } = this.cameras.main;
     const { height } = this.cameras.main;
@@ -53,7 +53,7 @@ export default class PreloaderScene extends Phaser.Scene {
       percentText.setText(`${parseInt(value * 100)}%`);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
-      progressBar.fillRect(250, 280, 300 * value, 30);
+      progressBar.fillRect(config.width / 2 - 160, config.height / 2 - 30, 300 * value, 50);
     });
 
     this.load.on('fileprogress', (file) => {

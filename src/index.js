@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 // import 'phaser';
 
 // import { SimpleScene } from './scenes/simple-scene';
@@ -50,15 +51,6 @@ class Game extends Phaser.Game {
   }
 }
 
-
-window.onload = function () {
-  window.game = new Game();
-
-  window.focus();
-  resize();
-  window.addEventListener('resize', resize, false);
-};
-
 function resize() {
   const canvas = document.querySelector('canvas');
   const windowWidth = window.innerWidth;
@@ -73,3 +65,11 @@ function resize() {
     canvas.style.height = `${windowHeight}px`;
   }
 }
+
+window.onload = function () {
+  window.game = new Game();
+
+  window.focus();
+  resize();
+  window.addEventListener('resize', resize, false);
+};

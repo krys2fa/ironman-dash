@@ -65,7 +65,7 @@ Kindly give this repository a ⭐️ if you like this project!
 
 - API used for scoreboard was the [Leaderboard API Service](https://www.notion.so/microverse/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3).
 
-- Sprites used were gotten from [Sithjester's RMXP Resources](http://untamed.wild-refuge.net/rmxpresources.php).
+- Assets used were gotten from [Sithjester's RMXP Resources](http://untamed.wild-refuge.net/rmxpresources.php) and [Open Game Art](https://opengameart.org/).
 
 ## 📝 License
 
