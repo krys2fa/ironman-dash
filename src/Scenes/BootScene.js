@@ -21,6 +21,12 @@ export default class BootScene extends Phaser.Scene {
       frameHeight: 512,
     });
     this.load.image('platform', 'assets/game/platform.png');
+
+    this.load.bitmapFont(
+      'pixelFont',
+      'assets/font/font.png',
+      'assets/font/font.xml',
+    );
   }
 
   create() {

@@ -8,7 +8,7 @@
   "scripts": {
     "test": "jest",
     "lint": "npx eslint . --fix && npx stylelint '**/*.{css,scss}' --fix",
-    "start": "yarn run webpack-dev-server"
+    "start": "yarn run webpack-dev-server --open"
   },
   "devDependencies": {
     "babel-core": "6",

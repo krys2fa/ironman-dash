@@ -15,12 +15,6 @@ export default class GameScene extends Phaser.Scene {
       frameHeight: 48,
     });
 
-    // the firecamp is a sprite sheet made by 32x58 pixels
-    // this.load.spritesheet('fire', 'assets/game/fire.png', {
-    //   frameWidth: 40,
-    //   frameHeight: 70,
-    // });
-
     this.load.spritesheet('fire', 'assets/game/energy.png', {
       frameWidth: 60,
       frameHeight: 50,
@@ -28,6 +22,23 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+
+
+    this.score = 0;
+    const scoreText = this.add.text(16, 16, 'Score: 0', {
+      fontSize: '32px',
+      fill: '#000',
+    });
+
+    const setTime = () => {
+      console.log(this.score);
+      this.score += 1;
+      scoreText.setText(`Score: ${this.score}`);
+    };
+
+
+    this.interval = setInterval(setTime, 500);
+
     // setting player animation
     this.anims.create({
       key: 'run',
@@ -41,16 +52,16 @@ export default class GameScene extends Phaser.Scene {
 
     // setting coin animation
 
-    this.anims.create({
-      key: 'rotate',
-      frames: this.anims.generateFrameNumbers('coin', {
-        start: 0,
-        end: 5,
-      }),
-      frameRate: 15,
-      yoyo: true,
-      repeat: -1,
-    });
+    // this.anims.create({
+    //   key: 'rotate',
+    //   frames: this.anims.generateFrameNumbers('coin', {
+    //     start: 0,
+    //     end: 5,
+    //   }),
+    //   frameRate: 15,
+    //   yoyo: true,
+    //   repeat: -1,
+    // });
 
     // setting fire animation
     this.anims.create({
@@ -83,20 +94,20 @@ export default class GameScene extends Phaser.Scene {
     });
 
     // group with all active coins.
-    this.coinGroup = this.add.group({
-      // once a coin is removed, it's added to the pool
-      removeCallback(coin) {
-        coin.scene.coinPool.add(coin);
-      },
-    });
+    // this.coinGroup = this.add.group({
+    //   // once a coin is removed, it's added to the pool
+    //   removeCallback(coin) {
+    //     coin.scene.coinPool.add(coin);
+    //   },
+    // });
 
     // coin pool
-    this.coinPool = this.add.group({
-      // once a coin is removed from the pool, it's added to the active coins group
-      removeCallback(coin) {
-        coin.scene.coinGroup.add(coin);
-      },
-    });
+    // this.coinPool = this.add.group({
+    //   // once a coin is removed from the pool, it's added to the active coins group
+    //   removeCallback(coin) {
+    //     coin.scene.coinGroup.add(coin);
+    //   },
+    // });
 
     // group with all active firecamps.
     this.fireGroup = this.add.group({
@@ -157,26 +168,26 @@ export default class GameScene extends Phaser.Scene {
     );
 
     // setting collisions between the player and the coin group
-    this.physics.add.overlap(
-      this.player,
-      this.coinGroup,
-      function (player, coin) {
-        this.tweens.add({
-          targets: coin,
-          y: coin.y - 100,
-          alpha: 0,
-          duration: 800,
-          ease: 'Cubic.easeOut',
-          callbackScope: this,
-          onComplete() {
-            this.coinGroup.killAndHide(coin);
-            this.coinGroup.remove(coin);
-          },
-        });
-      },
-      null,
-      this,
-    );
+    // this.physics.add.overlap(
+    //   this.player,
+    //   this.coinGroup,
+    //   function (player, coin) {
+    //     this.tweens.add({
+    //       targets: coin,
+    //       y: coin.y - 100,
+    //       alpha: 0,
+    //       duration: 800,
+    //       ease: 'Cubic.easeOut',
+    //       callbackScope: this,
+    //       onComplete() {
+    //         this.coinGroup.killAndHide(coin);
+    //         this.coinGroup.remove(coin);
+    //       },
+    //     });
+    //   },
+    //   null,
+    //   this,
+    // );
 
     // setting collisions between the player and the fire group
     this.physics.add.overlap(this.player, this.fireGroup, function (player, fire) {
@@ -255,24 +266,24 @@ export default class GameScene extends Phaser.Scene {
     // if this is not a starting platform...
     if (this.addedPlatforms > 1) {
       // is there a coin over the platform?
-      if (Phaser.Math.Between(1, 100) <= gameOptions.coinPercent) {
-        if (this.coinPool.getLength()) {
-          const coin = this.coinPool.getFirst();
-          coin.x = posX;
-          coin.y = posY - 96;
-          coin.alpha = 1;
-          coin.active = true;
-          coin.visible = true;
-          this.coinPool.remove(coin);
-        } else {
-          const coin = this.physics.add.sprite(posX, posY - 96, 'coin');
-          coin.setImmovable(true);
-          coin.setVelocityX(platform.body.velocity.x);
-          coin.anims.play('rotate');
-          coin.setDepth(2);
-          this.coinGroup.add(coin);
-        }
-      }
+      // if (Phaser.Math.Between(1, 100) <= gameOptions.coinPercent) {
+      //   if (this.coinPool.getLength()) {
+      //     const coin = this.coinPool.getFirst();
+      //     coin.x = posX;
+      //     coin.y = posY - 96;
+      //     coin.alpha = 1;
+      //     coin.active = true;
+      //     coin.visible = true;
+      //     this.coinPool.remove(coin);
+      //   } else {
+      //     const coin = this.physics.add.sprite(posX, posY - 96, 'coin');
+      //     coin.setImmovable(true);
+      //     coin.setVelocityX(platform.body.velocity.x);
+      //     coin.anims.play('rotate');
+      //     coin.setDepth(2);
+      //     this.coinGroup.add(coin);
+      //   }
+      // }
 
       // is there a fire over the platform?
       if (Phaser.Math.Between(1, 100) <= gameOptions.firePercent) {
@@ -318,7 +329,11 @@ export default class GameScene extends Phaser.Scene {
   update() {
     // game over
     if (this.player.y > config.height) {
-      this.scene.start('Game');
+      this.scene.pause();
+      console.log(this.score);
+      clearInterval(this.interval);
+      this.scene.stop('Game');
+      this.scene.start('Title');
     }
     this.player.x = gameOptions.playerStartPosition;
 
@@ -338,12 +353,12 @@ export default class GameScene extends Phaser.Scene {
     }, this);
 
     // recycling coins
-    this.coinGroup.getChildren().forEach(function (coin) {
-      if (coin.x < -coin.displayWidth / 2) {
-        this.coinGroup.killAndHide(coin);
-        this.coinGroup.remove(coin);
-      }
-    }, this);
+    // this.coinGroup.getChildren().forEach(function (coin) {
+    //   if (coin.x < -coin.displayWidth / 2) {
+    //     this.coinGroup.killAndHide(coin);
+    //     this.coinGroup.remove(coin);
+    //   }
+    // }, this);
 
     // recycling fire
     this.fireGroup.getChildren().forEach(function (fire) {
