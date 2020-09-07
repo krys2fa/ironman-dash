@@ -35,9 +35,6 @@ export default gameOptions = {
   // consecutive jumps allowed
   jumps: 2,
 
-  // % of probability a coin appears on the platform
-  // coinPercent: 80,
-
   // % of probability a fire appears on the platform
   firePercent: 5,
 };

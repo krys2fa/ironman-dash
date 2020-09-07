@@ -11,22 +11,11 @@ export default class BootScene extends Phaser.Scene {
       frameHeight: 48,
     });
 
-    this.load.spritesheet('coin', 'assets/game/coin.png', {
-      frameWidth: 20,
-      frameHeight: 20,
-    });
-
     this.load.spritesheet('buildings', 'assets/game/buildings-layer.png', {
       frameWidth: 512,
       frameHeight: 512,
     });
     this.load.image('platform', 'assets/game/platform.png');
-
-    this.load.bitmapFont(
-      'pixelFont',
-      'assets/font/font.png',
-      'assets/font/font.xml',
-    );
   }
 
   create() {
