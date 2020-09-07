@@ -35,7 +35,7 @@ export default class GameScene extends Phaser.Scene {
     };
 
 
-    this.interval = setInterval(setTime, 500);
+    this.interval = setInterval(setTime, 250);
 
     // setting player animation
     this.anims.create({
@@ -257,8 +257,14 @@ export default class GameScene extends Phaser.Scene {
     if (this.player.y > config.height) {
       this.scene.pause();
       clearInterval(this.interval);
-      this.scene.stop('Game');
-      this.scene.start('Title');
+      this.gameOverText = this.add.text(config.width / 2 - 200, config.height / 2, `Game Over! Score: ${this.score}`, {
+        fontSize: '32px',
+        fill: '#fff',
+      });
+      setTimeout(() => {
+        this.scene.stop('Game');
+        this.scene.start('Title');
+      }, 1500);
     }
     this.player.x = gameOptions.playerStartPosition;
 
