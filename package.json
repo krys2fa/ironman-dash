@@ -6,6 +6,7 @@
   "author": "Christopher \nAmanor <christopher.k.amanor@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "webpack --config webpack/prod.js ",
     "test": "jest",
     "lint": "npx eslint . --fix && npx stylelint '**/*.{css,scss}' --fix",
     "start": "yarn run webpack-dev-server --open"
@@ -30,6 +31,11 @@
   "dependencies": {
     "axios": "0.20.0",
     "phaser": "^3.0.0",
-    "regenerator-runtime": "0.13.7"
+    "regenerator-runtime": "0.13.7",
+    "terser-webpack-plugin": "^2.2.1",
+    "webpack": "^4.41.2",
+    "webpack-merge": "^4.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0"
   }
 }
