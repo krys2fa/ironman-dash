@@ -18,7 +18,7 @@ const names = (() => {
     const newName = prompt('Please enter your name', `${getName()}`) || getName();
     if (newName) {
       setName(newName);
-      printName();
+      // printName();
     }
   };
 

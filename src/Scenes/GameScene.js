@@ -30,7 +30,7 @@ export default class GameScene extends Phaser.Scene {
     });
 
     const setTime = () => {
-      console.log(this.score);
+      // console.log(this.score);
       this.score += 1;
       scoreText.setText(`Score: ${this.score}`);
     };

@@ -47,9 +47,7 @@ const scores = (() => {
     return result;
   };
 
-  const sortResults = (scores) => {
-    return scores.sort((a, b) => (a.score > b.score ? -1 : 1)).slice(0, 10);
-  };
+  const sortResults = (scores) => scores.sort((a, b) => (a.score > b.score ? -1 : 1)).slice(0, 10);
 
 
   return {

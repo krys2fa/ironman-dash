@@ -23,7 +23,11 @@ export default class ScoreboardScene extends Phaser.Scene {
         const topTen = allScores;
         let padding = 60;
         topTen.forEach((score) => {
-          this.add.text(config.width / 2, 50 + padding, `${score.user}    -   ${score.score} points\n\n\n`, {
+          this.add.text(config.width / 2, 50 + padding, `${score.user}`, {
+            fontSize: '32px',
+            fill: '#fff',
+          });
+          this.add.text(config.width / 2 + 280, 50 + padding, `${score.score} points\n\n\n`, {
             fontSize: '32px',
             fill: '#fff',
           });
@@ -36,5 +40,10 @@ export default class ScoreboardScene extends Phaser.Scene {
           fill: '#fff',
         });
       });
+
+    setTimeout(() => {
+      this.scene.stop('Scoreboard');
+      this.scene.start('Title');
+    }, 3000);
   }
 }
