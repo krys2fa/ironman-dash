@@ -16,7 +16,7 @@ This project consists of building an endless runner video game using JavaScript 
 
 ## Live Demo
 
-Click [here]() to visit a live version of the web app.
+Click [here](https://ironman-dash.netlify.app/) to visit a live version of the web app.
 
 ## Getting Started
 
