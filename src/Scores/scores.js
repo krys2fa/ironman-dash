@@ -23,26 +23,20 @@ const scores = (() => {
   const axios = require('axios');
 
   // get scores
-
   const getScores = (async () => {
     const endpoint = `${baseUrl}games/${gameId}/scores`;
     const response = await axios.get(endpoint);
     return response.data;
   })();
 
-
   // post new score
   const postScore = async (user, score) => {
     const endpoint = `${baseUrl}games/${gameId}/scores/`;
     const body = JSON.stringify({ user, score });
-    console.log('postScore -> endpoint', endpoint);
     const options = {
       'Content-Type': 'application/json',
     };
-
     const response = await axios.post(endpoint, body, { headers: options });
-    console.log('postScore -> response', response.data);
-
     return response.data;
   };
 
@@ -53,10 +47,15 @@ const scores = (() => {
     return result;
   };
 
+  const sortResults = (scores) => {
+    return scores.sort((a, b) => (a.score > b.score ? -1 : 1)).slice(0, 10);
+  };
+
 
   return {
     getScores,
     processScores,
+    sortResults,
   };
 })();
 

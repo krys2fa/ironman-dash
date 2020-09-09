@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-expressions */
 import Phaser from 'phaser';
 import config from '../Config/config';
-// import scores from '../Scores/scores';
+import scores from '../Scores/scores';
 
 export default class ScoreboardScene extends Phaser.Scene {
   constructor() {
@@ -10,38 +10,31 @@ export default class ScoreboardScene extends Phaser.Scene {
   }
 
   create() {
-    // const top_scores = scores.getScores;
-    // scores
-    //   .getScores
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch(() => {
-    //     this.loadingText.text = 'Connection\nproblem :(';
-    //   });
-    this.scoresText = this.add.text(0, 0, 'Top Ten', {
-      fontSize: '32px',
-      fill: '#fff',
-    });
+    this.add.text(config.width / 2 + 100,
+      20, 'Top Scores', {
+        fontSize: '32px',
+        fill: '#fff',
+      });
 
-    this.zone = this.add.zone(
-      config.width / 2,
-      config.height / 2,
-      config.width,
-      config.height
-    );
-
-    Phaser.Display.Align.In.Center(this.scoresText, this.zone);
-
-    this.scoresTween = this.tweens.add({
-      targets: this.scoresText,
-      y: -100,
-      ease: 'Power1',
-      duration: 3000,
-      delay: 1000,
-      onComplete() {
-        this.destroy;
-      },
-    });
+    scores
+      .getScores
+      .then((response) => {
+        const allScores = response.result;
+        const topTen = allScores;
+        let padding = 60;
+        topTen.forEach((score) => {
+          this.add.text(config.width / 2, 50 + padding, `${score.user}    -   ${score.score} points\n\n\n`, {
+            fontSize: '32px',
+            fill: '#fff',
+          });
+          padding += 50;
+        });
+      }).catch(() => {
+        // console.log(error);
+        this.add.text(0, 0, 'Something went wrong ...', {
+          fontSize: '32px',
+          fill: '#fff',
+        });
+      });
   }
 }
