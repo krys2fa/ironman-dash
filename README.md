@@ -19,7 +19,7 @@ It is inspired by the simplicity of [Google's T-Rex Dino Game](http://www.trex-g
 
 ## Game Development Design
 
-Click [here](src/assets/docs/gdd.md) to see the Game Design Document for the game.
+Click [here](./src/assets/docs/gdd.md) to see the Game Design Document for the game.
 
 ## How to Play
 
