@@ -11,7 +11,7 @@ module.exports = merge(base, {
   devtool: false,
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: './src/assets', to: 'src/assets' }],
+      patterns: [{ from: './src/assets', to: 'assets' }],
     }),
   ],
   performance: {
