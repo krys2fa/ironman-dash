@@ -7,19 +7,6 @@ const scores = (() => {
   const gameId = 'vdA6Ul30OGvHcoiYupo5';
   const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
 
-  // create game
-  // const getScores = async () => {
-  //   try {
-  //     const response = await fetch(`${baseUrl}games/${gameId}/scores/`, {
-  //       mode: 'cors',
-  //     });
-  //     const data = await response.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const axios = require('axios');
 
   // get scores
@@ -42,8 +29,12 @@ const scores = (() => {
 
   // process scores after game is over
   const processScores = (score) => {
+    let result;
     const user = names.getName();
-    const result = postScore(user, score);
+    if (user) {
+      result = postScore(user, score);
+    }
+
     return result;
   };
 
