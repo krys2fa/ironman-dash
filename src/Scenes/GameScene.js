@@ -3,6 +3,7 @@
 import Phaser from 'phaser';
 import config from '../Config/config';
 import gameOptions from '../Config/game';
+import scores from '../Scores/scores';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -257,10 +258,21 @@ export default class GameScene extends Phaser.Scene {
     if (this.player.y > config.height) {
       this.scene.pause();
       clearInterval(this.interval);
-      this.gameOverText = this.add.text(config.width / 2 - 200, config.height / 2, `Game Over! Score: ${this.score}`, {
+      this.gameOverText = this.add.text(config.width / 2 - 200, config.height / 2 - 100, `Game Over! Score: ${this.score}`, {
         fontSize: '32px',
         fill: '#fff',
       });
+
+      scores.processScores(this.score);
+      // console.log(scores);
+      // scores
+      //   .getScores
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch(() => {
+      //     this.loadingText.text = 'Connection\nproblem :(';
+      //   });
       setTimeout(() => {
         this.scene.stop('Game');
         this.scene.start('Title');

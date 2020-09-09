@@ -36,5 +36,5 @@ export default gameOptions = {
   jumps: 2,
 
   // % of probability a fire appears on the platform
-  firePercent: 5,
+  firePercent: 35,
 };
