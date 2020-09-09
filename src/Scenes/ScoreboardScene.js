@@ -11,6 +11,14 @@ export default class ScoreboardScene extends Phaser.Scene {
 
   create() {
     // const top_scores = scores.getScores;
+    // scores
+    //   .getScores
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch(() => {
+    //     this.loadingText.text = 'Connection\nproblem :(';
+    //   });
     this.scoresText = this.add.text(0, 0, 'Top Ten', {
       fontSize: '32px',
       fill: '#fff',
@@ -20,7 +28,7 @@ export default class ScoreboardScene extends Phaser.Scene {
       config.width / 2,
       config.height / 2,
       config.width,
-      config.height,
+      config.height
     );
 
     Phaser.Display.Align.In.Center(this.scoresText, this.zone);

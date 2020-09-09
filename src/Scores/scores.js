@@ -32,15 +32,25 @@ const scores = (() => {
 
 
   // post new score
+  const postScore = async (user, score) => {
+    const endpoint = `${baseUrl}games/${gameId}/scores/`;
+    const body = JSON.stringify({ user, score });
+    console.log('postScore -> endpoint', endpoint);
+    const options = {
+      'Content-Type': 'application/json',
+    };
+
+    const response = await axios.post(endpoint, body, { headers: options });
+    console.log('postScore -> response', response.data);
+
+    return response.data;
+  };
 
   // process scores after game is over
   const processScores = (score) => {
-    const name = names.getName();
-    const scoreObj = { user: name, score };
-    console.log('processScores -> scoreObj', scoreObj);
-    return scoreObj;
-    // console.log(`Score is ${score}`);
-    // console.log(`Name is ${name}`);
+    const user = names.getName();
+    const result = postScore(user, score);
+    return result;
   };
 
 

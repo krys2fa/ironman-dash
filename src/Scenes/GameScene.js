@@ -264,15 +264,7 @@ export default class GameScene extends Phaser.Scene {
       });
 
       scores.processScores(this.score);
-      // console.log(scores);
-      // scores
-      //   .getScores
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch(() => {
-      //     this.loadingText.text = 'Connection\nproblem :(';
-      //   });
+      // console.log(scores)
       setTimeout(() => {
         this.scene.stop('Game');
         this.scene.start('Title');
