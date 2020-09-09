@@ -1,10 +1,13 @@
 # ironman-dash
 This project consists of building an endless runner video game using JavaScript and the Phaser game engine as a requirement for the Microverse JavaScript Capstone Project.
-
+It is inspired by the simplicity of [Google's T-Rex Dino Game](http://www.trex-game.skipser.com/)
 
 ## Web App Screenshots
 ####
-![]()
+| Menu           | Game Play     |
+| :------------- | :----------: |
+|![](./src/assets/screenshots/menu.png) | ![](./src/assets/screenshots/gameplay.png)   |
+
 
 ## Built With
 
@@ -13,6 +16,11 @@ This project consists of building an endless runner video game using JavaScript 
 - CSS
 - [Phaser](https://phaser.io).
 - [Leaderboard API Service](https://www.notion.so/microverse/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3)
+
+## How to Play
+
+All you need is the main mouse button (left button). The game starts with Ironman running towards his laboratory. Help him jump onto platforms to avoid falling to his death. You may want to avoid the blue fireballs too as his suit can no longer help him fly or avoid getting burnt.
+Don't worry, he still has an extra jump (left-click once more while he is in the air) in case he mis-times a jump.
 
 ## Live Demo
 
@@ -24,20 +32,20 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-- [npm](https://www.npmjs.com).
+- [yarn](https://yarnpkg.com/lang/en/).
 - [Webpack](https://webpack.js.org/).
 - [Jest](http://jestjs.io).
 
 ### Setup
 - Clone the repository.
-- Run `npm install` in your terminal/command line to install dependencies.
-- Run `npm start` in your terminal/command line to start the game.
+- Run `yarn install` in your terminal/command line to install dependencies.
+- Run `yarn start` in your terminal/command line to start the game.
 
 ## Game Design Document
 
 ## Tests
 Tests were done using the Jest testing framework. You can run tests in the project directory by:
-- Running `npm tests` in your terminal/command line.
+- Running `yarn test` in your terminal/command line.
 
 ## Author
 
