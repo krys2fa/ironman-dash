@@ -34,7 +34,6 @@ export default class ScoreboardScene extends Phaser.Scene {
           padding += 50;
         });
       }).catch(() => {
-        // console.log(error);
         this.add.text(0, 0, 'Something went wrong ...', {
           fontSize: '32px',
           fill: '#fff',
