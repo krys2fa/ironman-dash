@@ -36,6 +36,7 @@ export default class GameScene extends Phaser.Scene {
     };
 
     this.interval = setInterval(setTime, 250);
+    // this.interval = setInterval(setTime, 100);
 
     // setting player animation
     this.anims.create({

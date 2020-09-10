@@ -10,11 +10,11 @@ const scores = (() => {
   const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
 
   // get scores
-  const getScores = (async () => {
+  const getScores = async () => {
     const endpoint = `${baseUrl}games/${gameId}/scores`;
     const response = await axios.get(endpoint);
     return response.data;
-  })();
+  };
 
   // post new score
   const postScore = async (user, score) => {

@@ -4,6 +4,7 @@
 import Phaser from 'phaser';
 import config from '../Config/config';
 import scores from '../Scores/scores';
+import Button from '../Objects/Button';
 
 export default class ScoreboardScene extends Phaser.Scene {
   constructor() {
@@ -17,9 +18,15 @@ export default class ScoreboardScene extends Phaser.Scene {
         fill: '#fff',
       });
 
+    this.loader = this.add.text(config.width / 2, 60, 'Loading ...', {
+      fontSize: '32px',
+      fill: '#fff',
+    });
+
     scores
-      .getScores
+      .getScores()
       .then((response) => {
+        this.loader.destroy();
         const allScores = response.result;
         const topTen = scores.sortResults(allScores);
         let padding = 60;
@@ -28,10 +35,15 @@ export default class ScoreboardScene extends Phaser.Scene {
             fontSize: '32px',
             fill: '#fff',
           });
-          this.add.text(config.width / 2 + 120, 50 + padding, `${score.score} points\n\n\n`, {
-            fontSize: '32px',
-            fill: '#fff',
-          });
+          this.add.text(
+            config.width / 2 + 120,
+            50 + padding,
+            `${score.score} points\n\n\n`,
+            {
+              fontSize: '32px',
+              fill: '#fff',
+            },
+          );
           padding += 50;
         });
       }).catch(() => {
@@ -41,9 +53,14 @@ export default class ScoreboardScene extends Phaser.Scene {
         });
       });
 
-    setTimeout(() => {
-      this.scene.stop('Scoreboard');
-      this.scene.start('Title');
-    }, 3000);
+    this.menuButton = new Button(
+      this,
+      config.width / 2 + 300,
+      40,
+      'blueButton1',
+      'blueButton2',
+      'Menu',
+      'Title',
+    );
   }
 }

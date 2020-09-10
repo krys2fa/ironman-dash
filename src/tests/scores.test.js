@@ -5,7 +5,8 @@ import scores from '../Scores/scores';
 describe('Axios', () => {
   it('calls axios and returns scores', async () => {
     mockAxios.get.mockImplementationOnce(() => Promise.resolve({}));
-    const allScores = await scores.getScores;
+    const allScores = await scores.getScores();
+    console.log(allScores);
     expect(allScores).toEqual({ user: 'John Doe', score: 42 });
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(mockAxios.get).toHaveBeenCalledWith(

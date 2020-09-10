@@ -42,7 +42,7 @@ const resize = () => {
     canvas.style.width = `${windowHeight * gameRatio}px`;
     canvas.style.height = `${windowHeight}px`;
   }
-}
+};
 
 window.onload = () => {
   window.game = new Game();
