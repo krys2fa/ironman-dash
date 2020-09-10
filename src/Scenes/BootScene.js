@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import config from '../Config/config';
 
 export default class BootScene extends Phaser.Scene {
   constructor() {
@@ -20,6 +21,8 @@ export default class BootScene extends Phaser.Scene {
   }
 
   create() {
+    this.add.image(config.width / 2, config.height / 2 - 60, 'logo');
+    this.add.text(config.width / 2, config.height / 2, 'Ironman Dash');
     this.scene.start('Preloader');
   }
 }
