@@ -14,7 +14,7 @@ const names = (() => {
     }
   };
 
-  return { inputName, getName };
+  return { inputName, getName, setName };
 })();
 
 export default names;
