@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable func-names */
+/* eslint-disable import/no-unresolved */
 import Phaser from 'phaser';
 import config from '../Config/config';
 import gameOptions from '../Config/game';

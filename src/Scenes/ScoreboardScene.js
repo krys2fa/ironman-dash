@@ -1,5 +1,6 @@
 /* eslint-disable func-names */
 /* eslint-disable no-unused-expressions */
+/* eslint-disable import/no-unresolved */
 import Phaser from 'phaser';
 import config from '../Config/config';
 import scores from '../Scores/scores';

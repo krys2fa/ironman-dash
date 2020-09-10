@@ -1,13 +1,7 @@
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable import/no-unresolved */
 import names from '../User/user';
 import 'jest-localstorage-mock';
-// jest.mock('../User/user', () => function {
-//   getName() {
-//     return [{ name: 'Anonymous' }];
-//   }
-// });
-
-// test()
 
 describe('LocalStorage', () => {
   test('should save the name to localStorage', () => {

@@ -1,5 +1,5 @@
 /* eslint-disable func-names */
-
+/* eslint-disable import/no-unresolved */
 import Phaser from 'phaser';
 import Model from './Model';
 import config from './Config/config';

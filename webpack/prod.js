@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 const CopyPlugin = require('copy-webpack-plugin');
 const merge = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');

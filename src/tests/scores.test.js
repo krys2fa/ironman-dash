@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import mockAxios from 'axios';
 import scores from '../Scores/scores';
 

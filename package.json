@@ -1,7 +1,9 @@
 {
   "name": "ironman-dash",
   "jest": {
-    "setupFiles": ["jest-localstorage-mock"]
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   },
   "version": "1.0.0",
   "main": "index.js",
