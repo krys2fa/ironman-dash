@@ -73,7 +73,7 @@ export default class PreloaderScene extends Phaser.Scene {
       },
     );
 
-    this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
+    this.timedEvent = this.time.delayedCall(8000, this.ready, [], this);
 
     this.load.image('logo', 'assets/game/ironman.png');
     this.load.image('blueButton1', 'assets/game/blue_button02.png');
