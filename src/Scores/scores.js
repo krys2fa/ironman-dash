@@ -1,13 +1,12 @@
 /* eslint-disable global-require */
 /* eslint-disable no-unused-vars */
 import regeneratorRuntime from 'regenerator-runtime';
+import axios, * as others from 'axios';
 import names from '../User/user';
 
 const scores = (() => {
   const gameId = 'vdA6Ul30OGvHcoiYupo5';
   const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
-
-  const axios = require('axios');
 
   // get scores
   const getScores = (async () => {
@@ -19,11 +18,15 @@ const scores = (() => {
   // post new score
   const postScore = async (user, score) => {
     const endpoint = `${baseUrl}games/${gameId}/scores/`;
-    const body = JSON.stringify({ user, score });
-    const options = {
-      'Content-Type': 'application/json',
-    };
-    const response = await axios.post(endpoint, body, { headers: options });
+
+    const response = await axios({
+      method: 'post',
+      url: endpoint,
+      data: {
+        user,
+        score,
+      },
+    });
     return response.data;
   };
 
@@ -45,48 +48,9 @@ const scores = (() => {
     getScores,
     processScores,
     sortResults,
+    postScore,
   };
 })();
 
 
 export default scores;
-
-
-// const processData = (data) => {
-//   const { icon, description } = data.weather[0];
-//   const { temp, humidity, pressure } = data.main;
-//   const { name, wind, sys } = data;
-//   const dataObject = {
-//     name,
-//     temp,
-//     icon,
-//     description,
-//     pressure,
-//     humidity,
-//     wind,
-//     sys,
-//   };
-//   return dataObject;
-// };
-
-// const getWeatherDetails = async (event) => {
-//   event.preventDefault();
-//   const units = getPreferredUnits(event, currentUnit);
-//   const city = getCity().value;
-
-//   try {
-//     const response = await fetch(
-//       `${baseUrl}${city}&units=${units}&appid=${apiKey}`,
-//       {
-//         mode: 'cors',
-//       }
-//     );
-//     const data = await response.json();
-//     const result = processData(data);
-//     currentUnit = units;
-//     clearErrors();
-//     updateWeatherDetails(result, units);
-//   } catch (error) {
-//     displayError(error);
-//   }
-// };

@@ -30,11 +30,9 @@ export default class GameScene extends Phaser.Scene {
     });
 
     const setTime = () => {
-      // console.log(this.score);
       this.score += 1;
       scoreText.setText(`Score: ${this.score}`);
     };
-
 
     this.interval = setInterval(setTime, 250);
 
@@ -264,7 +262,7 @@ export default class GameScene extends Phaser.Scene {
       });
 
       scores.processScores(this.score);
-      // console.log(scores)
+
       setTimeout(() => {
         this.scene.stop('Game');
         this.scene.start('Title');
