@@ -14,19 +14,21 @@ export default class OptionsScene extends Phaser.Scene {
       fontSize: 40,
     });
     this.musicButton = this.add.image(config.width / 2, 200, 'checkedBox');
-    this.musicText = this.add.text(config.width / 2 + 30, 190, 'Music Enabled', {
-      fontSize: 24,
-    });
+    this.musicText = this.add.text(
+      config.width / 2 + 30,
+      190,
+      'Music Enabled',
+      {
+        fontSize: 24,
+      }
+    );
 
     this.musicButton.setInteractive();
 
-    this.musicButton.on(
-      'pointerdown',
-      () => {
-        this.model.musicOn = !this.model.musicOn;
-        this.updateAudio();
-      },
-    );
+    this.musicButton.on('pointerdown', () => {
+      this.model.musicOn = !this.model.musicOn;
+      this.updateAudio();
+    });
 
     this.updateAudio();
 
@@ -41,6 +43,20 @@ export default class OptionsScene extends Phaser.Scene {
     );
   }
 
+  // updateAudio() {
+  //   if (this.model.musicOn === false) {
+  //     this.musicButton.setTexture('box');
+  //     this.sys.game.globals.bgMusic.stop();
+  //     this.model.bgMusicPlaying = false;
+  //   } else {
+  //     this.musicButton.setTexture('checkedBox');
+  //     if (this.model.bgMusicPlaying === false) {
+  //       this.sys.game.globals.bgMusic.play();
+  //       this.model.bgMusicPlaying = true;
+  //     }
+  //   }
+  // }
+
   updateAudio() {
     if (this.model.musicOn === false) {
       this.musicButton.setTexture('box');
@@ -52,6 +68,12 @@ export default class OptionsScene extends Phaser.Scene {
         this.sys.game.globals.bgMusic.play();
         this.model.bgMusicPlaying = true;
       }
+    }
+
+    if (this.model.soundOn === false) {
+      this.soundButton.setTexture('box');
+    } else {
+      this.soundButton.setTexture('checkedBox');
     }
   }
 }
