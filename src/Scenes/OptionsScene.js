@@ -20,7 +20,7 @@ export default class OptionsScene extends Phaser.Scene {
       'Music Enabled',
       {
         fontSize: 24,
-      }
+      },
     );
 
     this.musicButton.setInteractive();
@@ -43,20 +43,6 @@ export default class OptionsScene extends Phaser.Scene {
     );
   }
 
-  // updateAudio() {
-  //   if (this.model.musicOn === false) {
-  //     this.musicButton.setTexture('box');
-  //     this.sys.game.globals.bgMusic.stop();
-  //     this.model.bgMusicPlaying = false;
-  //   } else {
-  //     this.musicButton.setTexture('checkedBox');
-  //     if (this.model.bgMusicPlaying === false) {
-  //       this.sys.game.globals.bgMusic.play();
-  //       this.model.bgMusicPlaying = true;
-  //     }
-  //   }
-  // }
-
   updateAudio() {
     if (this.model.musicOn === false) {
       this.musicButton.setTexture('box');
@@ -69,11 +55,6 @@ export default class OptionsScene extends Phaser.Scene {
         this.model.bgMusicPlaying = true;
       }
     }
-
-    if (this.model.soundOn === false) {
-      this.soundButton.setTexture('box');
-    } else {
-      this.soundButton.setTexture('checkedBox');
-    }
   }
+
 }
