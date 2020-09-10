@@ -16,6 +16,7 @@ export default class BootScene extends Phaser.Scene {
       frameHeight: 512,
     });
     this.load.image('platform', 'assets/game/platform.png');
+    this.load.audio('bgMusic', ['assets/sounds/awesomeness.wav']);
   }
 
   create() {
