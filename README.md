@@ -17,9 +17,7 @@ It is inspired by the simplicity of [Google's T-Rex Dino Game](http://www.trex-g
 - [Phaser](https://phaser.io).
 - [Leaderboard API Service](https://www.notion.so/microverse/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3)
 
-## Game Development Design
-
-#Game Design Document for Ironman Dash
+## Game Design Document
 
 ## Background
 This endless runner game is built purely on the inspiration and simplicity of [Google's T-Rex Dino Game](http://www.trex-game.skipser.com/) which can be played in Google Chrome in offline mode.
@@ -36,7 +34,7 @@ He has to avoid blue fireballs that appear randomly on platforms or get burnt an
 
 To make it a bit more interesting, he can jump one more time while in the air in case he mis-times a jump.
 
-## Images
+## Key Assets/Images
 
 ### Platforms
 | Image           | Description    |
