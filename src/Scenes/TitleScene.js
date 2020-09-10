@@ -61,7 +61,7 @@ export default class TitleScene extends Phaser.Scene {
       config.height / 2 + 100,
       'blueButton1',
       'blueButton2',
-      'Top Scores',
+      'Top Ten',
       'Scoreboard',
     );
 

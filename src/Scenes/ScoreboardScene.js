@@ -10,8 +10,8 @@ export default class ScoreboardScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(config.width / 2 + 100,
-      20, 'Top Scores', {
+    this.add.text(config.width / 2 - 100,
+      20, 'Top Ten Scores', {
         fontSize: '32px',
         fill: '#fff',
       });
@@ -20,14 +20,14 @@ export default class ScoreboardScene extends Phaser.Scene {
       .getScores
       .then((response) => {
         const allScores = response.result;
-        const topTen = allScores;
+        const topTen = scores.sortResults(allScores);
         let padding = 60;
         topTen.forEach((score) => {
-          this.add.text(config.width / 2, 50 + padding, `${score.user}`, {
+          this.add.text(config.width / 2 - 250, 50 + padding, `${score.user}`, {
             fontSize: '32px',
             fill: '#fff',
           });
-          this.add.text(config.width / 2 + 280, 50 + padding, `${score.score} points\n\n\n`, {
+          this.add.text(config.width / 2 + 120, 50 + padding, `${score.score} points\n\n\n`, {
             fontSize: '32px',
             fill: '#fff',
           });
