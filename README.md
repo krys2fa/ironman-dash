@@ -19,38 +19,58 @@ It is inspired by the simplicity of [Google's T-Rex Dino Game](http://www.trex-g
 
 ## Game Design Document
 
-## Background
-This endless runner game is built purely on the inspiration and simplicity of [Google's T-Rex Dino Game](http://www.trex-game.skipser.com/) which can be played in Google Chrome in offline mode.
+### Background
+>This endless runner game is built purely on the inspiration and simplicity of [Google's T-Rex Dino Game](http://www.trex-game.skipser.com/) which can be played in Google Chrome in offline mode.
 
 ![](./src/assets/screenshots/trex-runner.png)
 
 
-## Story
-Ironman is a popular comic/movie hero in the Marvel Comic/Cinematic Universe. In this universe, Tony Stark is a billionaire who invents a metallic suit which can do almost anything from flying to shooting energy from his palms.
+### Story
+>Ironman is a popular comic/movie hero in the Marvel Comic/Cinematic Universe. In this universe, Tony Stark is a billionaire who invents a metallic suit which can do almost anything from flying to shooting energy from his palms.
 
-I employ Ironman in this game purely to dash (hence the name) and jump over platforms as quickly as he can to his laboratory to fix his suit which can no longer fly :wink:.
+>I employ Ironman in this game purely to dash (hence the name) and jump over platforms as quickly as he can to his laboratory to fix his suit which can no longer fly :wink:.
 
-He has to avoid blue fireballs that appear randomly on platforms or get burnt and fall to his death in the process. Also he falls to his death if he misses a platform whiles jumping.
+>He has to avoid blue fireballs that appear randomly on platforms or get burnt and fall to his death in the process. Also he falls to his death if he misses a platform whiles jumping.
 
-To make it a bit more interesting, he can jump one more time while in the air in case he mis-times a jump.
+>To make it a bit more interesting, he can jump one more time while in the air in case he mis-times a jump.
 
-## Key Assets/Images
+### Game Development Schedule
+>In order to meet the time estimate of 5 days for this project, I planned and went with the following daily schedule:
 
-### Platforms
+>Day 1
+I read materials on the Phaser game engine and practiced with tutorials that were made available.
+
+>Day 2
+I conceptualized the idea for the game and put together the working Game Design Document (GDD) for the project.
+I also used this time to gather resources and assets necessary for developing the game.
+
+>Day 3
+I started creating the MVP (Minimum Viable Product) version of the game.
+This had to do with setting up the project directory, installing dependencies and starting to implement the core features of the game.
+
+>Day 4
+With an MVP project setup from the previous day, I went on to refine most of the work. This included everything from refactoring code to fixing linter errors to writing tests.
+
+>Day 5
+Day 5 was a bit demanding because I was determined to meet the time estimate set for the project. I deployed the game to Netlify and created a Pull Request for the project on GitHub.
+Deployment took much longer than necessary because there were challenges in building the production files as well as challenges with the size of some assets.
+With this taken care of, I went on to submit the project for review.
+
+### Key Assets/Images
+
+>#### Platforms
 | Image           | Description    |
 | :------------- | :----------: |
 |![](./src/assets/game/platform.png) | You can run and jump on these |
 
-
-
-### Ironman
+>#### Ironman
 
 | Image           | Description    |
 | :------------- | :----------: |
 |![](./src/assets/screenshots/ironman.png) | The main (and only) character in the game. He can do an extra jump in the air in case he gets into a fix :wink: |
 
 
-### Fireball
+>#### Fireball
 | Image           | Description    |
 | :------------- | :----------: |
 |![](./src/assets/screenshots/fireball.png) | Avoid these as they will burn him off the platform |
@@ -79,8 +99,6 @@ To get a local copy up and running follow these simple example steps.
 - Clone the repository.
 - Run `yarn install` in your terminal/command line to install dependencies.
 - Run `yarn start` in your terminal/command line to start the game.
-
-## Game Design Document
 
 ## Tests
 Tests were done using the Jest testing framework. You can run tests in the project directory by:
