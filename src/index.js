@@ -29,7 +29,7 @@ class Game extends Phaser.Game {
   }
 }
 
-function resize() {
+const resize = () => {
   const canvas = document.querySelector('canvas');
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
@@ -44,10 +44,13 @@ function resize() {
   }
 }
 
-window.onload = function () {
+window.onload = () => {
   window.game = new Game();
 
   window.focus();
   resize();
   window.addEventListener('resize', resize, false);
+  if (window.game.sound.context.state === 'suspended') {
+    window.game.sound.context.resume();
+  }
 };

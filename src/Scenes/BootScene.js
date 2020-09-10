@@ -14,8 +14,8 @@ export default class BootScene extends Phaser.Scene {
     });
 
     this.load.spritesheet('buildings', 'assets/game/buildings-layer.png', {
-      frameWidth: 512,
-      frameHeight: 512,
+      frameWidth: 190,
+      frameHeight: 120,
     });
     this.load.image('platform', 'assets/game/platform.png');
   }

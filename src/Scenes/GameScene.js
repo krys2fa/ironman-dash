@@ -163,7 +163,6 @@ export default class GameScene extends Phaser.Scene {
       if (Phaser.Math.Between(0, 1)) {
         buildings.setDepth(1);
       }
-      buildings.setFrame(Phaser.Math.Between(0, 3));
       this.addBuildings();
     }
   }
@@ -300,7 +299,6 @@ export default class GameScene extends Phaser.Scene {
         const rightmostBuildings = this.getRightmostBuildings();
         buildings.x = rightmostBuildings + Phaser.Math.Between(100, 350);
         buildings.y = config.height + Phaser.Math.Between(0, 100);
-        buildings.setFrame(Phaser.Math.Between(0, 3));
         if (Phaser.Math.Between(0, 1)) {
           buildings.setDepth(1);
         }
