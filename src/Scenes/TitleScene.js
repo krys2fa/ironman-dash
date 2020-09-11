@@ -2,7 +2,6 @@
 import Phaser from 'phaser';
 import config from '../Config/config';
 import Button from '../Objects/Button';
-import names from '../User/user';
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {
@@ -10,18 +9,19 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create() {
-    const inputNameButton = this.add.text(
-      config.width / 2 - 180,
-      config.height / 2 - 280,
-      'Click here to input/change your name.\n\n Only games with names will be saved!',
-      { fill: 'yellow' },
-    );
-    inputNameButton.setInteractive();
-    inputNameButton.on('pointerdown', () => {
-      names.inputName();
-    });
+    this.add.image(config.width / 2, config.height / 2 - 250, 'logo');
 
-    this.add.image(config.width / 2, config.height / 2 - 170, 'logo');
+    // Input Name
+    this.gameButton = new Button(
+      this,
+      config.width / 2,
+      config.height / 2 - 180,
+      'blueButton1',
+      'blueButton2',
+      'Add Name',
+      'InputName',
+    );
+
     // Game
     this.gameButton = new Button(
       this,
