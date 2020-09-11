@@ -24,4 +24,19 @@ describe('LocalStorage', () => {
     expect(localStorage.__STORE__[KEY]).not.toBe(WRONG_VALUE);
     expect(Object.keys(localStorage.__STORE__).length).toBe(1);
   });
+
+  test('should retrieve the correct name from localStorage', () => {
+    const CORRECT_VALUE = 'Pirlo';
+    names.setName(CORRECT_VALUE);
+    expect(names.getName()).toBe(CORRECT_VALUE);
+    expect(Object.keys(localStorage.__STORE__).length).toBe(1);
+  });
+
+  test('should not retrieve a wrong name from localStorage', () => {
+    const CORRECT_VALUE = 'Pirlo';
+    const WRONG_VALUE = 'Andrea';
+    names.setName(CORRECT_VALUE);
+    expect(names.getName()).not.toBe(WRONG_VALUE);
+    expect(Object.keys(localStorage.__STORE__).length).toBe(1);
+  });
 });
