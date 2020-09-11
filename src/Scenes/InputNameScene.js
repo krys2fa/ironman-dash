@@ -13,13 +13,13 @@ export default class InputNameScene extends Phaser.Scene {
   }
 
   create() {
-    const text = this.add.text(config.width / 2 - 100, config.height / 2, 'Enter your name:', {
+    const text = this.add.text(config.width / 2 - 100, 100, 'Enter your name:', {
       color: 'yellow',
       fontFamily: 'Arial',
       fontSize: '24px ',
     });
     const element = this.add
-      .dom(config.width / 3, config.height / 2)
+      .dom(config.width / 2 - 100, config.height / 2 + 50)
       .createFromCache('name_form');
     element.setPerspective(800);
     element.addListener('click');
